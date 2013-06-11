@@ -1,0 +1,3 @@
+Flask==0.9
+-e git+https://github.com/dfm/kplr.git#egg=kplr-dev
+-e git+https://github.com/dfm/untrendy.git#egg=untrendy-dev
