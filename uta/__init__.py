@@ -19,7 +19,7 @@ app.config.from_object("uta.config")
 
 @app.route("/")
 def index():
-    return "Untrendy!"
+    return flask.render_template("index.html")
 
 
 @app.route("/api/planet/<planetid>")
@@ -85,7 +85,12 @@ def api(kepid):
     # Normalize data.
     uf = f / factor
 
-    result = {"time": t.tolist(), "sapflux": f.tolist(), "flux": uf.tolist(),
-              "knots": model.get_knots(), "coeffs": model.get_coeffs(),
-              "model": factor}
+    # Build the output dictionary.
+    result = {"time": t.tolist(),
+              "sapflux": f.tolist(),
+              "flux": uf.tolist(),
+              "knots": model.get_knots().tolist(),
+              "coeffs": model.get_coeffs().tolist(),
+              "model": factor.tolist()}
+
     return json.dumps(result)
